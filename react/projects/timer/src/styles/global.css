@@ -1,0 +1,39 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	line-height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100lvh;
+}
+
+.bg {
+	background-color: #ececec;
+}
+
+.container {
+	padding: 1rem;
+	border-radius: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.timer {
+	font-size: 4rem;
+}
+
+button[type="button"] {
+	padding: .4rem 1rem;
+	font-size: 1rem;
+	border-radius: 1rem;
+	cursor: pointer;
+}
+
+button[type="button"]:hover {
+	filter: brightness(105%);
+}

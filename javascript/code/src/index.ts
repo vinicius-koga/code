@@ -1,28 +1,12 @@
-function isValid(str: string): boolean {
-    const checkedChars = [];
-    const openingChars = "({[";
+const showTime = setInterval(() => {
+	let date = new Date();
+	console.log(date.toLocaleString('pt-BR', {
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+	}))
+}, 1000);
 
-	if (str.length <= 1) return false;
-
-    for (let i = 0; i < str.length; i++) {
-        const currentChar = str[i]!;
-
-        if (openingChars.includes(currentChar)) {
-            checkedChars.push(currentChar);
-            continue;
-        }
-
-        const lastCheckedChar = checkedChars[checkedChars.length - 1];
-
-        const expectedChar =
-			currentChar === ")" ? "(" :
-			currentChar === "]" ? "[" :
-			currentChar === "}" ? "{" : null;
-
-        if (lastCheckedChar !== expectedChar) return false;
-	
-		checkedChars.pop();
-	}
-	
-    return checkedChars.length === 0;
-}
+setTimeout(() => {
+	clearInterval(showTime)
+}, 6000);
