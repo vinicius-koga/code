@@ -27,6 +27,7 @@ export function HomeForm() {
 		if (!taskName) {
 			inputRef.current!.value = ''
 			alert('You need to type something');
+			return
 		};
 
 		// newTask creation
@@ -42,20 +43,16 @@ export function HomeForm() {
 
 		// appState update
 		const secondsRemaining = newTask.duration * 60;
-		setAppState(currentState => {
+		setAppState(prevState => {
 			return {
-				...currentState,
-				taskHistory: [...currentState.taskHistory, newTask],
+				...prevState,
+				taskHistory: [...prevState.taskHistory, newTask],
 				activeTask: newTask,
 				currentCycle: nextCycle,
 				secondsRemaining: secondsRemaining,
 				formattedTime: formatTime(secondsRemaining),
 			};
 		});
-	};
-
-	function handleInterrupt() {
-		interruptTask(setAppState);
 	};
 
 	return (
@@ -95,7 +92,7 @@ export function HomeForm() {
 						aria-label='interrupt the current task'
 						title='interrupt the current task'
 						className={`${styles.formSubmitBtn} ${styles.formBtnRed}`} 
-						onClick={handleInterrupt}
+						onClick={() => interruptTask(setAppState)}
 						key='Btn'
 				>
 					<StopCircleIcon size={26}/>
