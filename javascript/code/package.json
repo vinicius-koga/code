@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "code": "tsx ./src/index.ts"
+    "code": "tsx ./src/index.ts",
+	"build": "tsc"
   },
   "keywords": [],
   "author": "",
