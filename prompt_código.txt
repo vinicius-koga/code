@@ -1,0 +1,99 @@
+O trecho de código abaixo explica como criar, exportar e renderizar componentes em React. 
+Faça um código seguindo a mesma estrutura didática dele, porém para explicar {}. 
+Não é preciso incluir considerações finais ou resumo no final do código. 
+Tente deixar o mais resumido possível, sem remover conteúdos importantes. 
+Inclua //@ts-nocheck no início do código. 
+Deixe os "===" em cima e em baixo dos títulos do mesmo tamanho dele, para que fique mais bonito. 
+ 
+Segue o código: 
+//@ts-nocheck 
+ 
+//================ 
+//COMPONENTE REACT 
+//================ 
+ 
+/* 
+Um componente React é uma função que retorna uma interface (UI). 
+Por convenção, o nome de componentes começa com letra maiúscula. 
+*/ 
+ 
+ 
+//===================== 
+//CRIANDO UM COMPONENTE 
+//===================== 
+ 
+/* 
+Um componente pode ser criado como uma função. 
+O JSX retornado pela função representa o que será exibido na tela. 
+*/ 
+// arquivo -> App.tsx 
+ 
+function App() { 
+    return <h1>Olá, React!</h1>; 
+} 
+ 
+ 
+//======================================= 
+//CRIANDO UM COMPONENTE COM VÁRIOS FILHOS 
+//======================================= 
+ 
+/* 
+Um componente pode retornar vários elementos, desde que estejam 
+envolvidos por um elemento pai. O React.Fragment (<>...</>) é um elemento pai invisível. 
+*/ 
+// arquivo -> App.tsx 
+ 
+function App() { 
+    return ( 
+        <> 
+            <h1>Olá, React!</h1> 
+            <p>Posso ter quantos elementos quiser aqui.</p> 
+        </> 
+    ); 
+} 
+ 
+ 
+//======================= 
+//EXPORTANDO O COMPONENTE 
+//======================= 
+ 
+/* 
+Para utilizar o componente em outro arquivo, podemos exportá-lo. 
+export default -> exporta o componente como padrão do arquivo. 
+*/ 
+ 
+export default App; 
+ 
+ 
+//======================= 
+//IMPORTANDO O COMPONENTE 
+//======================= 
+ 
+/* 
+Em outro arquivo, o componente pode ser importado utilizando 
+o mesmo caminho do arquivo onde ele foi exportado. 
+*/ 
+ 
+import App from "./App"; 
+ 
+ 
+//=========================== 
+//RENDERIZANDO DENTRO DO ROOT 
+//=========================== 
+ 
+/* 
+O React utiliza um elemento HTML como ponto de entrada da aplicação. 
+ 
+Exemplo de index.html: 
+ 
+<div id="root"></div> 
+ 
+O createRoot() cria a raiz React nesse elemento. 
+O método render() informa qual componente deve ser renderizado. 
+*/ 
+// arquivo -> main.tsx 
+ 
+import { createRoot } from "react-dom/client"; 
+import App from "./App"; 
+ 
+createRoot(document.getElementById("root")).render(<App />);

@@ -1,0 +1,54 @@
+.taskForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--text-default);
+	width: 100%;
+}
+
+.formInput {
+	outline: 0;
+	background-color: transparent;
+	border: 2px solid transparent;
+	border-bottom: 2px solid var(--primary);
+	border-radius: 1rem;
+	color: var(--text-default);
+	text-align: center;
+	padding: .6rem 0;
+	font-size: 1.6rem;
+}
+
+.formtaskMessage {
+	font-weight: 300;
+	margin: 3rem 0;
+}
+
+.formSubmitBtn {
+	border: 0;
+	color: var(--text-default);
+	padding: 10px 0;
+	width: 100%;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.formBtnGreen {
+	background-color: var(--primary);
+}
+
+.formBtnGreen:hover {
+	background-color: color-mix(in srgb, var(--primary) 85%, black);
+}
+
+.formBtnRed {
+	background-color: var(--error);
+}
+
+.formBtnRed:hover {
+	background-color: color-mix(in srgb, var(--error) 85%, black);
+}
+
+svg {
+	vertical-align: bottom;
+	color: var(--container-bg);
+}

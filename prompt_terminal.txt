@@ -1,0 +1,177 @@
+O trecho de texto abaixo explica a instalação de dependências em NodeJS através do terminal. 
+Faça um texto seguindo a mesma estrutura didática deste, porém para explicar {}. 
+ 
+``` 
+============================================================ 
+        INSTALANDO DEPENDÊNCIAS NO Node.js (NPM) 
+============================================================ 
+ 
+As dependências são pacotes externos que adicionam funcionalidades ao seu 
+projeto, evitando que você precise implementar tudo do zero. 
+ 
+Todas as dependências instaladas ficam registradas no arquivo package.json, 
+permitindo que qualquer pessoa recrie o ambiente do projeto facilmente. 
+ 
+ 
+============================================================ 
+                 INSTALANDO DEPENDÊNCIAS 
+============================================================ 
+ 
+Instala uma dependência para o projeto: 
+ 
+# npm install nome-do-pacote 
+ 
+ou 
+ 
+# npm i nome-do-pacote 
+ 
+Exemplo: 
+ 
+# npm install express 
+ 
+ 
+============================================================ 
+              TIPOS DE DEPENDÊNCIAS 
+============================================================ 
+ 
+Existem dois tipos principais de dependências em um projeto Node.js. 
+ 
+# ------------------------- 
+DEPENDÊNCIAS (dependencies) 
+# ------------------------- 
+ 
+São utilizadas durante a execução da aplicação em produção. 
+ 
+Exemplos: 
+ 
+- express 
+- axios 
+- mysql2 
+- react 
+ 
+Instalação: 
+ 
+# npm install nome-do-pacote 
+ 
+ou 
+ 
+# npm i nome-do-pacote 
+ 
+# ------------------------- 
+DEPENDÊNCIAS DE DESENVOLVIMENTO (devDependencies) 
+# ------------------------- 
+ 
+São utilizadas apenas durante o desenvolvimento do projeto. 
+ 
+Elas normalmente servem para testes, compilação, lint, formatação de código, 
+hot reload, entre outras ferramentas. 
+ 
+Exemplos: 
+ 
+- nodemon 
+- eslint 
+- prettier 
+- typescript 
+- vite 
+ 
+Instalação: 
+ 
+# npm install --save-dev nome-do-pacote 
+ 
+ou 
+ 
+# npm i -D nome-do-pacote 
+ 
+# ------------------------- 
+DEPENDÊNCIAS GLOBAIS (Global Packages) 
+# ------------------------- 
+ 
+São instaladas no computador e podem ser utilizadas em qualquer projeto. 
+ 
+Normalmente são ferramentas de linha de comando (CLI - Command Line Interface), 
+ou seja, programas executados diretamente pelo terminal. 
+ 
+Elas NÃO são adicionadas ao arquivo package.json e também NÃO são instaladas 
+quando outra pessoa executa "npm install" no projeto. 
+ 
+Exemplos: 
+ 
+- npm 
+- typescript (comando tsc) 
+- @angular/cli 
+- create-vite 
+- nodemon (opcionalmente) 
+ 
+Instalação: 
+ 
+# npm install --global nome-do-pacote 
+ 
+ou 
+ 
+# npm install -g nome-do-pacote 
+ 
+ou 
+ 
+# npm i -g nome-do-pacote 
+ 
+Exemplo: 
+ 
+# npm install -g typescript 
+ 
+Após a instalação, o comando disponibilizado pelo pacote poderá ser utilizado 
+em qualquer pasta do computador. 
+ 
+Exemplo: 
+ 
+# tsc --version 
+ 
+ 
+============================================================ 
+            INSTALANDO MÚLTIPLAS DEPENDÊNCIAS 
+============================================================ 
+ 
+É possível instalar vários pacotes em um único comando. 
+ 
+Exemplo: 
+ 
+# npm install express dotenv cors 
+ 
+ou 
+ 
+# npm install -D eslint prettier nodemon 
+ 
+ 
+============================================================ 
+         INSTALANDO AS DEPENDÊNCIAS DO PROJETO 
+============================================================ 
+ 
+Ao clonar um projeto que já possui um package.json, basta executar: 
+ 
+# npm install 
+ 
+ou 
+ 
+# npm i 
+ 
+O npm lerá o arquivo package.json, baixará todas as dependências e criará a 
+pasta node_modules automaticamente. 
+ 
+ 
+============================================================ 
+               REMOVENDO DEPENDÊNCIAS 
+============================================================ 
+ 
+Para remover um pacote do projeto: 
+ 
+# npm uninstall nome-do-pacote 
+ 
+ou 
+ 
+# npm remove nome-do-pacote 
+ 
+Exemplo: 
+ 
+# npm uninstall express 
+ 
+O pacote será removido da pasta node_modules e também do package.json. 
+```

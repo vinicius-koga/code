@@ -1,0 +1,23 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	line-height: 100%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100lvh;
+}
+
+#root {
+	display: flex;
+	gap: 1rem;
+}
+
+button {
+	padding: 0 1rem;
+	cursor: pointer;
+}
