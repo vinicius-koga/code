@@ -1,53 +1,103 @@
-
 //@ts-nocheck
 
-//========
-//CLOSURE
-//========
+//================
+//CLOSURES EM JS
+//================
 
 /*
-Closure ocorre quando uma função consegue acessar variáveis
-do escopo externo mesmo após a função externa ter terminado.
+Closure ocorre quando uma função mantém acesso às variáveis
+do escopo léxico em que foi criada, mesmo após esse escopo terminar.
 */
 
 
-//=======================
-//CRIANDO UM CLOSURE
-//=======================
+//=====================
+//CRIANDO UMA CLOSURE
+//=====================
 
 /*
-A função interna mantém acesso à variável count,
-mesmo depois que a função externa termina.
+A função interna consegue acessar variáveis da função externa,
+mesmo quando a função externa já terminou sua execução.
 */
 
 function createCounter() {
     let count = 0;
 
-    return function () {
+    return () => {
         count++;
-        return count;
-    };
+        console.log(count);
+    }
 }
-
+//              | aqui é onde o closure (escopo da função externa) é passado para a variável. 
 const counter = createCounter();
 
-console.log(counter()); // 1
-console.log(counter()); // 2
-console.log(counter()); // 3
+counter(); // 1
+counter(); // 2
+counter(); // 3
 
 
 //=============================
-//CLOSURES INDEPENDENTES
+//MANTENDO ESTADO COM CLOSURES
 //=============================
 
 /*
-Cada chamada da função externa cria um novo escopo.
-Por isso, cada closure mantém suas próprias variáveis.
+Cada chamada de createCounter() cria um novo escopo,
+com sua própria variável count, independente das demais.
 */
 
 const counterA = createCounter();
 const counterB = createCounter();
 
-console.log(counterA()); // 1
-console.log(counterA()); // 2
-console.log(counterB()); // 1
+counterA(); // 1
+counterA(); // 2
+counterB(); // 1
+
+
+//============================
+//ACESSANDO VARIÁVEIS EXTERNAS
+//============================
+
+/*
+A closure mantém acesso às variáveis do escopo léxico,
+não apenas aos valores que existiam quando foi criada.
+*/
+
+function createMessage() {
+    let message = "Olá";
+
+    return function () {
+        console.log(message);
+    };
+}
+
+const showMessage = createMessage();
+
+showMessage(); // "Olá"
+
+
+//===============================
+//ENCAPSULANDO VARIÁVEIS PRIVADAS
+//===============================
+
+/*
+Variáveis locais não podem ser acessadas diretamente de fora,
+mas podem ser manipuladas pelas funções que formam a closure.
+*/
+
+function createBankAccount() {
+    let balance = 0;
+
+    return {
+        deposit(value) {
+            balance += value;
+        },
+        getBalance() {
+            return balance;
+        }
+    };
+}
+
+const account = createBankAccount();
+
+account.deposit(100);
+console.log(account.getBalance()); // 100
+console.log(account.balance);      // undefined
