@@ -88,10 +88,34 @@ const pares = numeros.filter(numero => numero % 2 === 0);
 //===================
 
 /*
-Uma callback também pode ser executada após uma operação assíncrona,
-como um temporizador.
+Por mais que cada função leve um tempo diferente para
+executar, a próxima função (callback) só será executada
+quando a anterior terminar.
 */
 
-setTimeout(() => {
-    console.log("Executado após 1 segundo.");
-}, 1000);
+function f1(callback) {
+	setTimeout(() => {
+		console.log('f1');
+		if (callback) callback();
+	}, 2000) // 2 segundos
+}
+function f2(callback) {
+	setTimeout(() => {
+		console.log('f2');
+		if (callback) callback();
+	}, 3000) // 3 segundos
+}
+function f3(callback) {
+	setTimeout(() => {
+		console.log('f3');
+		if (callback) callback();
+	}, 1000) // 1 segundo
+}
+
+f1(() => {
+	f2(() => {
+		f3(() => {
+			console.log('finished')
+		})
+	})
+});
