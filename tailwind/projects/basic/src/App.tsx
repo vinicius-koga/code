@@ -1,9 +1,13 @@
+import MainSection from "./components/mainSection";
+import Header from "./components/Header";
+
 function App() {
-  return (
-    <>
-		<h1 className="text-3xl text-center capitalize">hello world!</h1>
-    </>
-  )
+	return (
+		<div className="min-h-screen font-semibold">
+			<Header />
+			<MainSection />
+		</div>
+	)
 }
 
 export default App

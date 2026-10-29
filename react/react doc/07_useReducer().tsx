@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-//================
+//=============
 // useReducer()
-//================
+//=============
 
 /*
 useReducer() é um Hook do React que gerencia estados utilizando
@@ -12,9 +12,9 @@ uma função reducer, que determina como o estado deve ser atualizado.
 */
 
 
-//==========================
+//=======================
 //UTILIZANDO useReducer()
-//==========================
+//=======================
 
 /*
 useReducer(reducer, initialState) recebe:
@@ -48,9 +48,9 @@ function App() {
 }
 
 
-//======================
+//==================
 //CRIANDO UM REDUCER
-//======================
+//==================
 
 /*
 O reducer recebe o estado atual e uma action (ação) que vem dentro do dispatch().
@@ -73,9 +73,9 @@ function reducer(state, action) {
 }
 
 
-//===========================
+//========================
 //COMO O DISPATCH FUNCIONA
-//===========================
+//========================
 
 /*
 dispatch() envia uma action ao reducer.
