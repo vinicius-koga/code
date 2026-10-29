@@ -19,12 +19,12 @@ function ThemeBtn() {
 	}, [theme]);
 
 	return (
-		<div className="fixed bottom-5 right-5 z-30 flex">
+		<div className="z-30 flex">
 			{theme ? <Moon /> : <Sun />}
 			<input 
 				type="checkbox" 
 				// se theme=(truthy) -> false // se theme=(falsy) -> true 
-				checked={!theme} 
+				checked={theme ? false : true} 
 				className="toggle ml-2" 
 				onChange={handleClick}
 			/>

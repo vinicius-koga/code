@@ -18,6 +18,7 @@ function Header() {
 						<li><a href="#">Início</a></li>
 						<li><a href="#">Sobre</a></li>
 						<li><a href="#">Contato</a></li>
+						<ThemeBtn />
 					</ul>
 				</nav>
 
@@ -34,11 +35,11 @@ function Header() {
 					<X className="cursor-pointer hover:scale-110 transition-all"/>
 				</button>
 
-				<ul className="flex flex-col gap-4 text-right w-full">
+				<ul className="flex flex-col items-end gap-4 text-right w-full">
+					<ThemeBtn />
 					<li><a href="#">Início</a></li>
 					<li><a href="#">Sobre</a></li>
 					<li><a href="#">Contato</a></li>
-					<ThemeBtn />
 				</ul>
 			</nav>
 
