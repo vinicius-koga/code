@@ -3,7 +3,7 @@ import Header from "./components/Header";
 
 function App() {
 	return (
-		<div className="min-h-screen font-semibold">
+		<div className="min-h-screen font-semibold bg-slate-100">
 			<Header />
 			<MainSection />
 		</div>
