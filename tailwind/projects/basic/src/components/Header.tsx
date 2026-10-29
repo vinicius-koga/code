@@ -1,5 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import ThemeBtn from "./ThemeBtn";
 
 function Header() {
 	const [ isOpen, setIsOpen ] = useState(false);
@@ -7,7 +8,7 @@ function Header() {
 	return (
 		<>
 			{/* HEADER */}
-			<div className="flex justify-between py-5 px-5 bg-slate-950 text-white font-semibold">
+			<div className="flex justify-between py-5 px-5 sm:px-10 xl:px-0 text-slate-900 font-semibold dark:text-white">
 				{/* LOGO */}
 				<div className="cursor-pointer">Logo</div>
 
@@ -28,7 +29,7 @@ function Header() {
 			</div>
 
 			{/* MOBILE HAMBURGER MENU */}
-			<nav className={`sm:hidden z-2 fixed right-0 top-0 h-screen w-64 bg-slate-950 text-white p-6 flex items-start font-semibold transition-all duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
+			<nav className={`sm:hidden z-20 fixed right-0 top-0 h-screen w-64 bg-white text-slate-900 dark:bg-slate-950 dark:text-white p-6 flex items-start font-semibold transition-all duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
 				<button onClick={() => setIsOpen(false)}>
 					<X className="cursor-pointer hover:scale-110 transition-all"/>
 				</button>
@@ -37,12 +38,13 @@ function Header() {
 					<li><a href="#">Início</a></li>
 					<li><a href="#">Sobre</a></li>
 					<li><a href="#">Contato</a></li>
+					<ThemeBtn />
 				</ul>
 			</nav>
 
 			{/* MOBILE MENU BACKDROP */}
 			{isOpen && <div 
-				className="bg-black opacity-35 absolute top-0 bottom-0 right-0 left-0 z-1 sm:hidden"
+				className="bg-black opacity-35 absolute top-0 bottom-0 right-0 left-0 z-10 sm:hidden"
 				onClick={() => {setIsOpen(false)}}
 			></div>}
 		</>

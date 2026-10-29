@@ -3,10 +3,12 @@ import MainSection from "./components/MainSection";
 
 function App() {
 	return (
-		<>
-			<Header />
-			<MainSection />
-		</>
+		<div className="bg-white dark:bg-slate-950 min-h-screen">
+			<div className="max-w-312.5 m-auto">
+				<Header />
+				<MainSection />
+			</div>
+		</div>
 	)
 }
 
