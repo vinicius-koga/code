@@ -7,7 +7,7 @@ function Header() {
 	return (
 		<>
 			{/* HEADER */}
-			<div className="flex justify-between py-5 px-5 bg-slate-950 text-white">
+			<div className="flex justify-between py-5 px-5 bg-slate-950 text-white font-semibold">
 				{/* LOGO */}
 				<div className="cursor-pointer">Logo</div>
 
@@ -28,13 +28,7 @@ function Header() {
 			</div>
 
 			{/* MOBILE HAMBURGER MENU */}
-			<nav
-				className={`sm:hidden z-2 fixed right-0 top-0 h-screen w-64 bg-slate-950 
-					      text-white p-6 flex items-start 
-							transition-all duration-300
-						    ${isOpen ? "translate-x-0" : "translate-x-full"}
-				`}
-			>
+			<nav className={`sm:hidden z-2 fixed right-0 top-0 h-screen w-64 bg-slate-950 text-white p-6 flex items-start font-semibold transition-all duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
 				<button onClick={() => setIsOpen(false)}>
 					<X className="cursor-pointer hover:scale-110 transition-all"/>
 				</button>
