@@ -26,6 +26,7 @@ function countdown(n) {
     if (n <= 0) return; // Condição de parada
 
     console.log(n);
+	
     countdown(n - 1); // Chamada recursiva
 }
 
