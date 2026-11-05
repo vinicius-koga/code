@@ -1,63 +1,30 @@
 import styles from './styles.module.css'
 import { CirclePlay, StopCircleIcon } from 'lucide-react'
 import { useRef } from 'react';
-import { useAppContext, type TaskType } from '../../contexts/appContext';
-import { getNextCycleNumber, getNextCycleName } from '../../utils/getNextCycle';
-import { formatTime } from '../../utils/formatTime';
+import { useAppContext } from '../../contexts/appContext';
 import { Cycles } from '../Cycles';
 import { FormMessage } from '../FormMessage';
-import { interruptTask } from '../../utils/interruptTask';
 
 export function HomeForm() {
-	const { appState, setAppState } = useAppContext();
+	const { appState, dispatch } = useAppContext();
 
 	// adding input ref
 	const inputRef = useRef<HTMLInputElement>(null);
-	// getting next cycle number
-	const nextCycle = getNextCycleNumber(appState.currentCycle);
-	// getting next cycle name
-	const nextCycleName = getNextCycleName(nextCycle);
 
-	// submit handler
-	function handleSubmit(e: React.SubmitEvent) {
+	// submit task dispatcher
+	function dispatchSubmit(e: React.SubmitEvent) {
 		e.preventDefault();
-		
-		// getting user input value
-		const taskName = inputRef.current!.value.trim();
-		if (!taskName) {
-			inputRef.current!.value = ''
-			alert('You need to type something');
-			return
-		};
-
-		// newTask creation
-		const newTask: TaskType = {
-			id: Date.now().toString(),
-			name: taskName,
-			duration: appState.config[nextCycleName],
-			type: nextCycleName,
-			startDate: Date.now(),
-			completeDate: null,
-			interruptDate: null,
-		};
-
-		// appState update
-		const secondsRemaining = newTask.duration * 60;
-		setAppState(prevState => {
-			return {
-				...prevState,
-				taskHistory: [...prevState.taskHistory, newTask],
-				activeTask: newTask,
-				currentCycle: nextCycle,
-				secondsRemaining: secondsRemaining,
-				formattedTime: formatTime(secondsRemaining),
-			};
-		});
+		dispatch({ type: 'submit', inputValue: inputRef.current?.value });
 	};
+
+	// interrupt task dispatcher
+	function dispatchInterrupt() {
+		dispatch({ type: 'interrupt' })
+	}
 
 	return (
 		<>
-			<form action="#" method="POST" onSubmit={handleSubmit} className={styles.taskForm}>
+			<form action="#" method="POST" onSubmit={dispatchSubmit} className={styles.taskForm}>
 				<label htmlFor="task">Digite sua tarefa:</label>
 				<input
 					type="text"
@@ -92,8 +59,8 @@ export function HomeForm() {
 						aria-label='interrupt the current task'
 						title='interrupt the current task'
 						className={`${styles.formSubmitBtn} ${styles.formBtnRed}`} 
-						onClick={() => interruptTask(setAppState)}
-						key='Btn'
+						onClick={dispatchInterrupt}
+						key='interruptBtn'
 				>
 					<StopCircleIcon size={26}/>
 				</button>

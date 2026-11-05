@@ -6,7 +6,7 @@ export function Navbar() {
 	// theme initial state
 	const [theme, setTheme] = useState<'dark' | 'light'>(() => {
 		const savedTheme = localStorage.getItem('theme');
-		return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark';
+		return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light';
 	});
 
 	// theme button handler

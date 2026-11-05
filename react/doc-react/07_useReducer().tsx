@@ -17,31 +17,32 @@ uma função reducer, que determina como o estado deve ser atualizado.
 //=======================
 
 /*
-useReducer(reducer, initialState) recebe:
+useReducer() recebe:
 - reducer -> função que determina como atualizar o estado.
 - initialState -> valor inicial do estado.
 
-Retorna:
+reducer() recebe:
 - state -> estado atual.
-- dispatch -> função que envia uma action para o reducer.
+- action -> objeto enviado pelo dispatch().
+
+reducer() sempre deve retornar o novo estado.
 */
-// arquivo -> App.tsx
 
 import { useReducer } from "react";
 
-function App() {
-    const [state, dispatch] = useReducer(reducer, { count: 0 });
+function App() {					   //              reducer()               initialState	   
+    const [state, dispatch] = useReducer( (state, action) => { return state }, { count: 0 } );
 
     return (
-        <>
+        <>										{/* action */}
 			<button onClick={() => dispatch({ type: "decrement" })}>
-                Decrementar
+                Decrementar--
             </button>
 
             <h1>{state.count}</h1>
 
             <button onClick={() => dispatch({ type: "increment" })}>
-                Incrementar
+                Incrementar++
             </button>
         </>
     );
@@ -110,6 +111,7 @@ type action = {
 
 function App() {
     const [state, dispatch] = useReducer((state: number, action: action) => {
+
 		switch (action.type) {
 			case "increment":
 				return state + action.payload;
@@ -120,6 +122,7 @@ function App() {
 			default:
 				return state;
 		}
+		
 	}, 0);
 
     return (

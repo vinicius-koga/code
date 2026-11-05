@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { interruptTask } from "../utils/interruptTask";
+import { submitTask } from "../utils/submitTask";
 
 // types
 export type TaskType = {
@@ -22,9 +24,13 @@ export type AppStateType = {
     longBreakTime: number;
   };
 };
+export type ActionType = {
+	type: 'submit' | 'interrupt';
+	inputValue?: string;
+}
 type AppContextType = {
 	appState: AppStateType;
-	setAppState: React.Dispatch<React.SetStateAction<AppStateType>>;
+	dispatch: React.Dispatch<ActionType>;
 };
 
 // app initial state
@@ -46,14 +52,25 @@ const AppContext = createContext<AppContextType | null>(null);
 
 // context provider
 export function AppContextProvider({ children }: { children: React.ReactNode }) {
-	const [appState, setAppState] = useState(appInitialState);
+
+	// useReducer
+	const [appState, dispatch] = useReducer((appState, action) => {
+		switch(action.type) {
+			case 'submit':
+				return submitTask(appState, action);
+
+			case 'interrupt':
+				return interruptTask(appState);
+		}
+		return appState;
+	}, appInitialState);
 
 	useEffect(() => {
-		console.log('appState:', appState);
-	}, [appState]);
+		console.log(appState);
+	}, [appState])
 
 	return (
-		<AppContext.Provider value={{appState, setAppState}}>
+		<AppContext.Provider value={{appState, dispatch}}>
 			{children}
 		</AppContext.Provider>
 	)
@@ -63,7 +80,7 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
 export function useAppContext() {
 	const context = useContext(AppContext);
 	if (!context) {
-        throw new Error("Profile deve estar dentro de UserProvider.");
+        throw new Error("Componente deve estar dentro de AppContext.Provider.");
     };
 	return context;
 };

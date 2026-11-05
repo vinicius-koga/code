@@ -21,7 +21,6 @@ import { createContext, useState, useContext, type ReactNode } from "react";
 O createContext() cria um contexto que poderá armazenar
 um valor compartilhado entre componentes.
 */
-// arquivo -> UserContext.tsx
 
 
 type UserContextType = {
@@ -29,10 +28,12 @@ type UserContextType = {
     setUser: (user: string) => void;
 }
 
+// createContext<Tipo>() informa qual sera o tipo do valor enviado pelo context.
+
 const UserContext = createContext<UserContextType | null>(null);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<string>("Vinícius");
+    const [user, setUser] = useState("Vinícius");
 
     return (
         <UserContext.Provider value={{ user, setUser }}>

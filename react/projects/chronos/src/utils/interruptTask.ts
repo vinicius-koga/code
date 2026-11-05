@@ -1,17 +1,16 @@
-import { type AppStateType } from "../contexts/appContext";
+import type { AppStateType } from "../contexts/appContext";
 
-export function interruptTask(setAppState: React.Dispatch<React.SetStateAction<AppStateType>>) {
-	setAppState(currentState => {
-		return {
-			...currentState,
+export function interruptTask(appState: AppStateType) {
+	return {
+			...appState,
 
 			activeTask: null,
 			formattedTime: '00:00',
 			secondsRemaining: 0,
 			currentCycle: 0,
 
-			taskHistory: currentState.taskHistory.map(task => {
-				if (currentState.activeTask && currentState.activeTask.id === task.id) {
+			taskHistory: appState.taskHistory.map(task => {
+				if (appState.activeTask && appState.activeTask.id === task.id) {
 					return {
 						...task,
 						interruptDate: Date.now()
@@ -20,5 +19,4 @@ export function interruptTask(setAppState: React.Dispatch<React.SetStateAction<A
 				return task;
 			}),
 		};
-	});
 };
