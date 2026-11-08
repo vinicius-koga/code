@@ -35,7 +35,7 @@ export function Navbar() {
 					<Settings size={26}/>
 				</div>
 				<div className={styles.navItem} onClick={handleClick}>
-					{theme === 'dark' ? <Sun size={26}/> : <Moon size={26}/>}
+					{theme === 'dark' ? <Moon size={26}/> : <Sun size={26}/>}
 				</div>
 			</div>
 		</>
