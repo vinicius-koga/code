@@ -1,9 +1,9 @@
 
 // @ts-nocheck
 
-//================
+//==========
 //PROTOTYPES
-//================
+//==========
 
 /*
 Todo objeto JavaScript possui uma referência interna chamada [[Prototype]].
@@ -16,9 +16,9 @@ procura automaticamente em seu prototype.
 */
 
 
-//===============================
+//==================================
 //ACESSANDO O PROTOTYPE DE UM OBJETO
-//===============================
+//==================================
 
 /*
 Object.getPrototypeOf() retorna o prototype de um objeto.
@@ -35,9 +35,9 @@ const prototype = Object.getPrototypeOf(person);
 console.log(prototype); // Object.prototype
 
 
-//================================
+//=============================
 //CRIANDO OBJETOS COM PROTOTYPE
-//================================
+//=============================
 
 /*
 Object.create() cria um novo objeto utilizando outro objeto
@@ -57,9 +57,9 @@ user.name = "Vinicius";
 user.greet(); // Olá, Vinicius!
 
 
-//===================================
+//==================================
 //HERANÇA ATRAVÉS DA PROTOTYPE CHAIN
-//===================================
+//==================================
 
 /*
 Um objeto pode herdar propriedades e métodos de outro objeto.
@@ -86,9 +86,9 @@ dog.bark(); // Próprio de dog
 console.log(Object.getPrototypeOf(dog) === animal); // true
 
 
-//=================================
+//================================
 //PROPRIEDADES PRÓPRIAS E HERDADAS
-//=================================
+//================================
 
 /*
 Object.hasOwn() verifica se uma propriedade pertence diretamente
@@ -114,9 +114,9 @@ console.log("brand" in car); // true
 console.log("start" in car); // true
 
 
-//================================
+//=================================
 //CONSTRUCTOR FUNCTIONS E PROTOTYPE
-//================================
+//=================================
 
 /*
 Toda função tradicional pode ser utilizada como construtora.
@@ -150,9 +150,9 @@ console.log(
 ); // true
 
 
-//================================
+//=======================
 //PROPRIEDADE CONSTRUCTOR
-//================================
+//=======================
 
 /*
 Por padrão, o prototype de uma função construtora possui
@@ -166,9 +166,9 @@ console.log(person1.constructor === Person); // true
 console.log(Person.prototype.constructor === Person); // true
 
 
-//================================
+//=====================
 //ALTERANDO O PROTOTYPE
-//================================
+//=====================
 
 /*
 Podemos adicionar ou modificar métodos no prototype.
@@ -185,9 +185,9 @@ person1.sayName();
 person2.sayName();
 
 
-//================================
+//========================
 //SUBSTITUINDO O PROTOTYPE
-//================================
+//========================
 
 /*
 Também podemos substituir completamente o prototype de uma função.
@@ -215,9 +215,9 @@ user1.greet();
 console.log(user1.constructor === User); // true
 
 
-//================================
+//=====================
 //VERIFICANDO A HERANÇA
-//================================
+//=====================
 
 /*
 instanceof verifica se o prototype de uma função construtora
@@ -228,9 +228,9 @@ console.log(user1 instanceof User); // true
 console.log(user1 instanceof Object); // true
 
 
-//================================
+//===================================
 //HERANÇA ENTRE CONSTRUCTOR FUNCTIONS
-//================================
+//===================================
 
 /*
 Object.create() permite estabelecer a herança entre prototypes.
@@ -273,67 +273,6 @@ console.log(dog1 instanceof Animal); // true
 
 
 //================================
-//PROTOTYPE NAS CLASSES
-//================================
-
-/*
-Os métodos declarados dentro de uma classe são adicionados
-automaticamente ao prototype da classe.
-
-Por isso, todas as instâncias compartilham os mesmos métodos.
-*/
-
-class UserClass {
-    constructor(name) {
-        this.name = name;
-    }
-
-    greet() {
-        console.log(`Olá, ${this.name}!`);
-    }
-}
-
-const user2 = new UserClass("Ana");
-
-user2.greet();
-
-console.log(
-    Object.getPrototypeOf(user2) === UserClass.prototype
-); // true
-
-
-//================================
-//HERANÇA COM EXTENDS E SUPER
-//================================
-
-/*
-extends estabelece a herança entre classes.
-
-super() chama o constructor da classe pai.
-super.metodo() acessa um método da classe pai.
-*/
-
-class Cat extends Animal {
-    constructor(name) {
-        super(name);
-    }
-
-    eat() {
-        super.eat();
-
-        console.log("O gato terminou de comer.");
-    }
-}
-
-const cat = new Cat("Mimi");
-
-cat.eat();
-
-console.log(cat instanceof Cat);    // true
-console.log(cat instanceof Animal); // true
-
-
-//================================
 //PROTOTYPES NATIVOS DO JAVASCRIPT
 //================================
 
@@ -363,58 +302,3 @@ console.log(
 console.log(
     Object.getPrototypeOf(Object.prototype)
 ); // null
-
-
-//================================
-//MODIFICANDO PROTOTYPES NATIVOS
-//================================
-
-/*
-É tecnicamente possível adicionar métodos aos prototypes nativos,
-mas geralmente deve ser evitado para não causar conflitos
-com outras bibliotecas ou partes da aplicação.
-*/
-
-Array.prototype.first = function () {
-    return this[0];
-};
-
-console.log([10, 20, 30].first()); // 10
-
-
-//================================
-//PROTOTYPE NULL
-//================================
-
-/*
-Object.create(null) cria um objeto sem prototype.
-
-Ele não herda métodos de Object.prototype, como toString()
-e hasOwnProperty().
-*/
-
-const dictionary = Object.create(null);
-
-dictionary.name = "JavaScript";
-
-console.log(dictionary.name); // JavaScript
-
-console.log(Object.getPrototypeOf(dictionary)); // null
-
-
-//================================
-//VERIFICANDO A CADEIA DE PROTOTYPES
-//================================
-
-/*
-A cadeia de protótipos pode ser percorrida manualmente
-utilizando Object.getPrototypeOf().
-*/
-
-let currentPrototype = user1;
-
-while (currentPrototype !== null) {
-    console.log(currentPrototype);
-
-    currentPrototype = Object.getPrototypeOf(currentPrototype);
-}
