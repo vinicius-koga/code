@@ -1,21 +1,13 @@
-function Conta(agencia, conta, saldo) {
-	this.agencia = agencia;
-	this.conta = conta;
-	this.saldo = saldo;
-}
-Conta.prototype.sacar = function(valor) {
-	if (this.saldo < valor) return;
-	this.saldo -= valor;
-}
-Conta.prototype.depositar = function(valor) {
-	this.saldo += valor
-}
-Conta.prototype.verSaldo = function() {
-	console.log(this.saldo);
+class Pessoa {
+	constructor(name, surname) {
+		this.name = name;
+		this.surname = surname;
+	}
+
+	falar() {
+		console.log(`${this.name} ${this.surname} está falando.`)
+	}
 }
 
-const c1 = new Conta(1010, 2020, 1000);
-
-c1.sacar(500);
-
-console.log(c1)
+const p1 = new Pessoa('Vinicius', 'Koga');
+console.log(p1);

@@ -22,7 +22,6 @@ procura automaticamente em seu prototype.
 
 /*
 Object.getPrototypeOf() retorna o prototype de um objeto.
-
 Object.setPrototypeOf() permite alterar o prototype de um objeto.
 */
 
@@ -76,7 +75,7 @@ const animal = {
 
 const dog = Object.create(animal);
 
-dog.bark = function () {
+dog.bark = function() {
     console.log("Au au!");
 };
 
@@ -239,25 +238,21 @@ O método call() executa uma função utilizando outro objeto como this,
 permitindo reutilizar as propriedades da construtora pai.
 */
 
+// Animal
 function Animal(name) {
     this.name = name;
 }
-
 Animal.prototype.eat = function () {
     console.log(`${this.name} está comendo.`);
 };
 
+// Animal --> Dog
 function Dog(name, breed) {
     Animal.call(this, name);
-
     this.breed = breed;
 }
-
 // Dog herda os métodos de Animal.
 Dog.prototype = Object.create(Animal.prototype);
-
-Dog.prototype.constructor = Dog;
-
 // Adicionando um método próprio.
 Dog.prototype.bark = function () {
     console.log("Au au!");
