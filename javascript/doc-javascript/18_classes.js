@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-//=====================
+//=================
 //1. ENCAPSULAMENTO
-//=====================
+//=================
 
 /*
 Controla o acesso aos atributos e métodos de uma classe,
@@ -34,9 +34,9 @@ console.log(account.balance); // 100
 // account.#balance; // Erro
 
 
-//=====================
+//============
 //2. ABSTRAÇÃO
-//=====================
+//============
 
 /*
 Esconde detalhes internos de implementação,
@@ -62,9 +62,9 @@ const car = new Car();
 console.log(car.start());
 
 
-//=====================
+//==========
 //3. HERANÇA
-//=====================
+//==========
 
 /*
 Permite que uma classe herde atributos e métodos de outra,
@@ -96,9 +96,9 @@ console.log(dog.eat());
 console.log(dog.bark());
 
 
-//=====================
+//===============
 //4. POLIMORFISMO
-//=====================
+//===============
 
 /*
 Permite que diferentes classes utilizem o mesmo método,
