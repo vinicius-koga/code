@@ -257,6 +257,5 @@ class BankAccount {
 const account = new BankAccount();
 
 account.deposit(100);
-
 console.log(account.getBalance()); // 100
-// console.log(account.#balance); // Erro
+// console.log(account.#balance);  // Erro
