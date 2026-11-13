@@ -30,7 +30,7 @@ reducer() sempre deve retornar o novo estado.
 
 import { useReducer } from "react";
 
-function App() {					   //              reducer()               initialState	   
+function App() {					   // |            reducer()             | initialState	|   
     const [state, dispatch] = useReducer( (state, action) => { return state }, { count: 0 } );
 
     return (

@@ -23,14 +23,13 @@ do componente e recebidas como argumento da função.
 
 // arquivo -> App.tsx
 
-function Saudacao(props) {
-    return <h1>Olá, {props.nome}!</h1>;
-}
-
 function App() {
-    return <Saudacao nome="Vinícius" />;
+	return <Saudacao nome="Vinícius" />;
 }
 
+function Saudacao(props) {
+	return <h1>Olá, {props.nome}!</h1>;
+}
 
 //==========================
 //DESESTRUTURANDO AS PROPS
@@ -41,14 +40,13 @@ A desestruturação permite acessar as propriedades diretamente,
 sem precisar escrever props.nome, props.idade, etc.
 */
 
-function Usuario({ nome, idade }) {
-    return <p>{nome} tem {idade} anos.</p>;
-}
-
 function App() {
-    return <Usuario nome="Vinícius" idade={26} />;
+	return <Usuario nome="Vinícius" idade={26} />;
 }
 
+function Usuario({ nome, idade }) {
+	return <p>{nome} tem {idade} anos.</p>;
+}
 
 //==========================
 //TIPOS DE VALORES NAS PROPS

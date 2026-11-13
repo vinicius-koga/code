@@ -81,10 +81,6 @@ Elas permitem reutilizá-lo com diferentes dados.
 
 // arquivo -> App.tsx
 
-function Saudacao({ nome }) {
-    return <h1>Olá, {nome}!</h1>;
-}
-
 function App() {
     return (
         <>
@@ -92,6 +88,10 @@ function App() {
             <Saudacao nome="Maria" />
         </>
     );
+}
+
+function Saudacao({ nome }) {
+    return <h1>Olá, {nome}!</h1>;
 }
 
 
@@ -104,19 +104,18 @@ A prop children representa o conteúdo colocado entre
 as tags de abertura e fechamento de um componente.
 */
 
-function Card({ children }) {
-    return <div className="card">{children}</div>;
-}
-
 function App() {
-    return (
-        <Card>
+	return (
+		<Card>
             <h2>Título</h2>
             <p>Conteúdo do cartão.</p>
         </Card>
     );
 }
 
+function Card({ children }) {
+	return <div className="card">{children}</div>;
+}
 
 //=======================
 //EXPORTANDO O COMPONENTE

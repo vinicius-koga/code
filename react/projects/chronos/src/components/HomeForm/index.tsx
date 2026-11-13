@@ -14,7 +14,7 @@ export function HomeForm() {
 	// submit task dispatcher
 	function dispatchSubmit(e: React.SubmitEvent) {
 		e.preventDefault();
-		dispatch({ type: 'submit', inputValue: inputRef.current?.value });
+		dispatch({ type: 'submit', inputValue: inputRef.current!.value });
 	};
 
 	// interrupt task dispatcher

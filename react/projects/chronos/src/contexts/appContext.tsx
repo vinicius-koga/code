@@ -58,7 +58,6 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
 		switch(action.type) {
 			case 'submit':
 				return submitTask(appState, action);
-
 			case 'interrupt':
 				return interruptTask(appState);
 		}

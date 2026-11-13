@@ -21,10 +21,10 @@ export function submitTask(appState: AppStateType, action: ActionType) {
 		id: Date.now().toString(),
 		name: taskName,
 		duration: appState.config[nextCycleName],
-		type: nextCycleName,
 		startDate: Date.now(),
 		completeDate: null,
 		interruptDate: null,
+		type: nextCycleName,
 	};
 
 	// appState update

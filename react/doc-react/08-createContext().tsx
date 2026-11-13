@@ -28,7 +28,10 @@ type UserContextType = {
     setUser: (user: string) => void;
 }
 
-// createContext<Tipo>() informa qual sera o tipo do valor enviado pelo context.
+/*
+createContext<Tipo>(initialValue) informa qual sera o tipo do valor enviado 
+e seu valor inicial.
+*/
 
 const UserContext = createContext<UserContextType | null>(null);
 
