@@ -36,10 +36,7 @@ await espera cada Promise ser resolvida, facilitando a leitura do código.
 */
 
 async function buscarUsuario() {
-    const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users/1"
-    );
-
+    const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
     const data = await response.json();
 
     console.log(data);
@@ -60,9 +57,7 @@ try/catch captura erros de rede e erros lançados com throw.
 
 async function buscarUsuario() {
     try {
-        const response = await fetch(
-            "https://jsonplaceholder.typicode.com/users/1"
-        );
+        const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
 
         if (!response.ok) {
             throw new Error(`Erro HTTP: ${response.status}`);
@@ -71,6 +66,7 @@ async function buscarUsuario() {
         const data = await response.json();
 
         console.log(data);
+		
     } catch (error) {
         console.error("Falha na requisição:", error);
     }
