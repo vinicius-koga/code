@@ -83,6 +83,37 @@ include -> pastas que o compilador deve analisar.
 */
 
 
+//================================
+//EXECUTANDO O CÓDIGO SEM COMPILAR
+//================================
+
+/* O pacote tsx compila e executa seu arquivo sem gerar o arquivo /dist/index.js */
+
+// npm install -D tsx
+// tsx ./src/index.ts
+
+
+//==============================
+//ADICIONANDO TSX AO CODE-RUNNER
+//==============================
+
+/* Com o Code Runner instalado no VSCODE, crie a pasta .vscode/ e dentro
+adicione o arquivo settings.json.
+
+Assim as configurações só funcionarão para o projeto em questão.
+
+Dentro de settings.json adicione:
+{
+	"code-runner.executorMap": {
+		"typescript": "npx tsx ./src/index.ts",
+	}
+}
+
+Assim ao clicar no botão do CodeRunner o terminal irá executar o npx e 
+exibir o resultado.
+*/
+
+
 //===========
 //MODO STRICT
 //===========

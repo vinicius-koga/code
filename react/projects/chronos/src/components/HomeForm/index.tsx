@@ -22,6 +22,10 @@ export function HomeForm() {
 		dispatch({ type: 'interrupt' })
 	}
 
+	// timer web-worker
+	const worker = new Worker(new URL('../../utils/webWorker.js', import.meta.url));
+	worker.postMessage('ok');
+
 	return (
 		<>
 			<form action="#" method="POST" onSubmit={dispatchSubmit} className={styles.taskForm}>
