@@ -1,8 +1,8 @@
 //@ts-nocheck
 
-//================
+//==================
 //CLASSES TYPESCRIPT
-//================
+//==================
 
 /*
 Uma classe é um modelo (blueprint) utilizado para criar objetos.
@@ -13,9 +13,9 @@ que não existem nativamente nas classes do JavaScript.
 */
 
 
-//================
+//==================
 //CRIANDO UMA CLASSE
-//================
+//==================
 
 /*
 class -> declara uma classe.
@@ -43,22 +43,23 @@ class Usuario {
 const usuario = new Usuario("Vinícius", 26);
 
 
-//================
+//=======================
 //MODIFICADORES DE ACESSO
-//================
+//=======================
 
 /*
 public -> acessível de qualquer lugar. É o padrão.
-private -> acessível somente dentro da própria classe.
 protected -> acessível dentro da classe e de suas subclasses.
+private -> acessível somente dentro da própria classe.
+static -> só pode ser chamado por fora chamando a classe.
 
 Esses modificadores são recursos do TypeScript.
 */
 
 class Conta {
     public titular: string;
-    private saldo: number;
     protected agencia: number;
+    private saldo: number;
 
     constructor(titular: string, saldo: number, agencia: number) {
         this.titular = titular;
@@ -66,21 +67,21 @@ class Conta {
         this.agencia = agencia;
     }
 
-    consultarSaldo() {
+    static consultarSaldo() {
         return this.saldo;
     }
 }
 
 const conta = new Conta("Vinícius", 1000, 1010);
 
-console.log(conta.titular);       // OK
-console.log(conta.consultarSaldo()); // OK
-// console.log(conta.saldo);      // Erro: private
+console.log(conta.titular);          // OK
+console.log(conta.saldo);      	     // Erro: private
+console.log(conta.consultarSaldo()); // Erro: static
 
 
-//================
+//========
 //READONLY
-//================
+//========
 
 /*
 readonly -> permite atribuir um valor ao atributo somente na declaração
@@ -105,9 +106,9 @@ produto.nome = "Mouse"; // OK
 // produto.id = 2;       // Erro: readonly
 
 
-//================
+//====================
 //PARAMETER PROPERTIES
-//================
+//====================
 
 /*
 O TypeScript permite declarar e inicializar atributos diretamente
@@ -161,6 +162,43 @@ temperatura.celsius = 25;
 console.log(temperatura.celsius);
 
 
+//==================
+//CLASSES COMO TIPOS
+//==================
+
+/*
+Uma classe também pode ser utilizada como tipo no TypeScript.
+
+Uma variável desse tipo deve possuir a estrutura compatível
+com a instância da classe.
+*/
+
+class User {
+    constructor(
+		public name: string
+	)
+
+    sayHello() {
+        return 'Olá';
+    }
+}
+
+const user1: User = {
+    name: 'Larissa',
+
+    sayHello() {
+        return 'Olá, Larissa';
+    }
+}; // OK
+
+
+// O tipo gerado pela classe seria o equivalente a esse:
+type User = {
+    name: string;
+    sayHello: () => string;
+};
+
+
 //================
 //HERANÇA
 //================
@@ -181,12 +219,22 @@ class Animal {
 }
 
 class Cachorro extends Animal {
-    constructor(nome: string, public raca: string) {
+    constructor(
+		nome: string, 
+		public raca: string
+	) {
         super(nome);
     }
 
+	//sobrescreve o método da função pai.
     emitirSom() {
         console.log("Au au!");
+    }
+
+	//Adiciona código antes do método da função pai
+    emitirSom() {
+        console.log("Adicional");
+		super.emitirSom();
     }
 }
 
@@ -195,9 +243,9 @@ const cachorro = new Cachorro("Rex", "Labrador");
 cachorro.emitirSom();
 
 
-//================
+//=========
 //ABSTRAÇÃO
-//================
+//=========
 
 /*
 abstract -> impede que uma classe seja instanciada diretamente.
@@ -226,9 +274,9 @@ const carro = new Carro("Toyota");
 // const veiculo = new Veiculo("Ford"); // Erro: classe abstrata
 
 
-//================
+//============
 //POLIMORFISMO
-//================
+//============
 
 /*
 Polimorfismo permite que diferentes classes implementem
@@ -252,9 +300,9 @@ const animais: Animal[] = [
 animais.forEach(animal => animal.emitirSom());
 
 
-//================
+//======
 //STATIC
-//================
+//======
 
 /*
 static -> declara atributos e métodos pertencentes à própria classe,
@@ -273,6 +321,39 @@ class Matematica {
 
 console.log(Matematica.PI);
 console.log(Matematica.somar(10, 20));
+
+
+//=====================
+//MÉTODOS ABSTRATOS (TYPESCRIPT)
+//=====================
+
+/*
+abstract -> permite declarar uma classe abstrata, que não pode
+ser instanciada diretamente.
+
+Métodos abstratos são declarados sem implementação.
+As subclasses são obrigadas a implementá-los.
+
+Esse recurso existe no TypeScript, não no JavaScript.
+*/
+
+abstract class Animal {
+    constructor(public name: string) {}
+
+    abstract makeSound(): string;
+}
+
+class Dog extends Animal {
+    makeSound(): string {
+        return "Au au!";
+    }
+}
+
+const dog = new Dog("Rex");
+
+console.log(dog.makeSound()); // Au au!
+
+// const animal = new Animal("Animal"); // Erro
 
 
 //================
@@ -299,49 +380,3 @@ class UsuarioAdmin implements Autenticavel {
         return true;
     }
 }
-
-
-//================
-//CLASSES COMO TIPOS
-//================
-
-/*
-Uma classe também pode ser utilizada como tipo no TypeScript.
-
-Uma variável desse tipo deve possuir a estrutura compatível
-com a instância da classe.
-*/
-
-class Cliente {
-    constructor(
-        public nome: string,
-        public idade: number
-    ) {}
-}
-
-const cliente: Cliente = new Cliente("Vinícius", 26);
-
-
-//================
-//EXPORTANDO A CLASSE
-//================
-
-/*
-export -> permite utilizar a classe em outros arquivos.
-export default -> exporta a classe como padrão do arquivo.
-*/
-
-export default Usuario;
-
-
-//================
-//IMPORTANDO A CLASSE
-//================
-
-/*
-import -> importa a classe utilizando o caminho do arquivo.
-*/
-
-import Usuario from "./Usuario";
-
-const novoUsuario = new Usuario("Maria", 30);

@@ -222,15 +222,20 @@ class Animal {
     }
 }
 
+// sobrescrevendo completamente o método
 class Dog extends Animal {
     speak() {
         return "Au au!";
     }
 }
 
-const dog = new Dog();
-
-console.log(dog.speak()); // Au au!
+// adicionando algo antes do método
+class Dog extends Animal {
+    speak() {
+		console.log('Adicional')
+        return super.speak();
+    }
+}
 
 
 //=====================
