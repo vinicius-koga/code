@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { interruptTask } from "../utils/interruptTask";
 import { submitTask } from "../utils/submitTask";
+import { WebWorkerManager } from "../utils/webWorkerManager";
 
 // types
 export type TaskType = {
@@ -52,7 +53,6 @@ const AppContext = createContext<AppContextType | null>(null);
 
 // context provider
 export function AppContextProvider({ children }: { children: React.ReactNode }) {
-
 	// useReducer
 	const [appState, dispatch] = useReducer((appState, action) => {
 		switch(action.type) {
@@ -63,9 +63,27 @@ export function AppContextProvider({ children }: { children: React.ReactNode }) 
 		}
 		return appState;
 	}, appInitialState);
-
+	
+	// useEffect
 	useEffect(() => {
-		console.log(appState);
+		const worker = WebWorkerManager.getInstance();
+
+		worker.onMessage((message) => {
+			console.log(message.data);
+
+			if (message.data <= 0) {
+				console.log('WORKER COMPLETED');
+				worker.terminate();
+			}
+		})
+
+		if (!appState.activeTask) {
+			console.log('NO ACTIVE TASK');
+			worker.terminate();
+		}
+
+		worker.postMessage(appState);
+
 	}, [appState])
 
 	return (
